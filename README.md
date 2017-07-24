@@ -1,2 +1,2 @@
 # Incubator-Proposal
-Working on solar PV data
+Just the plot codes
