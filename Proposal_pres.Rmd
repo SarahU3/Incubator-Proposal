@@ -1,0 +1,37 @@
+---
+title: "Solar PV Project Proposal"
+author: "SU"
+date: "August 8, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+setwd("~/GitHub/Incubator-Proposal")
+data <- read.csv("~/GitHub/Incubator-Proposal/solar.csv")
+attach(data)
+```
+
+## Introduction
+
+<img src="solarcheap.png" height="500px" width="740px" />
+
+
+## Installations
+<img src="Pct_map.png"height="500px" width="740px" />
+
+## Cost ratio
+<img src ="Costratio.png" height="500px" width="740px" />
+
+## Size vs rebate
+
+<img src = "Size_rebate.png" height="500px" width="740px" />
+
+## Costs vary
+
+<img src = "Top_five_costs.png" height="500px" width="740px" />
+
+## To Do
+- Try clustering to determine typologies of solar installers based on incentives, rates, and income
+- Zip code maps by state of income and installations
+- Animated maps of installations over time 
