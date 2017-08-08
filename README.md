@@ -13,3 +13,4 @@ To Do:
 
 Ideal visualizations:
 - Zip code maps by state of income and installations
+- Animated maps of installations over time (has the pace been picking up, especially outside CA?)
