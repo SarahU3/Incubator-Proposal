@@ -55,14 +55,23 @@ statepv$costratio <- statepv$rebate/statepv$cost
 statemap <- map_data("state")
 ggplot(statepv, aes(map_id=state)) + geom_map(aes(fill = value), map = statemap) + 
   expand_limits(x = statemap$long, y = statemap$lat)
-statepv$pct <- statepv$value/sum(statepv$value)*100
+
+statepv$pct <- (statepv$value/sum(statepv$value))*100
 ggplot(statepv, aes(map_id=state)) + geom_map(aes(fill = pct), map = statemap) + 
   expand_limits(x = statemap$long, y = statemap$lat) +theme_bw() + 
+  theme(axis.line=element_blank(),axis.text.x=element_blank(),
+        axis.text.y=element_blank(),axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank()) +
   labs(title="Percent of solar installations by state", fill="Percent") + 
   scale_fill_gradient(low="gray90", high="green4")
 
 ggplot(statepv, aes(map_id=state)) + geom_map(aes(fill = costratio), map = statemap) + 
   expand_limits(x = statemap$long, y = statemap$lat) +theme_bw() + 
+  theme(axis.line=element_blank(),axis.text.x=element_blank(),
+        axis.text.y=element_blank(),axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank()) + 
   labs(title="Ratio of average rebate to average cost", fill="Rebate/cost") + 
   scale_fill_gradient(low="gray90", high="blue4")
 
