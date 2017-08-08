@@ -1,7 +1,7 @@
-setwd("~/GitHub/DataIncubator")
+setwd("~/GitHub/Incubator-Proposal")
 
 #load openpv data
-solar <- read.csv("~/GitHub/DataIncubator/openpv_all.csv", stringsAsFactors = FALSE)
+solar <- read.csv("~/GitHub/Incubator-Proposal/openpv_all.csv", stringsAsFactors = FALSE)
 #some basic data cleaning to collapse levels of factor solar$install_type
 unique(solar$install_type)
 solar$install_type2 <- `levels<-`(factor(solar$install_type), list(agriculture=c("Agricultural","agricultural",
@@ -19,15 +19,15 @@ solar$install_type2 <- `levels<-`(factor(solar$install_type), list(agriculture=c
 unique(solar$install_type2)
 
 # load utility rates by zip
-setwd("~/GitHub/DataIncubator/Rates")
-files <- list.files(path = "~/GitHub/DataIncubator/Rates", pattern="*.csv")
+setwd("~/GitHub/Incubator-Proposal/Rates")
+files <- list.files(path = "~/GitHub/Incubator-Proposal/Rates", pattern="*.csv")
 # First apply read.csv, then rbind
 rates <- data.frame()
 rates <- do.call(rbind, lapply(files, function(x) cbind(read.csv(x), name=strsplit(x,'\\.')[[1]][1])))
-save(rates, file = "~/GitHub/DataIncubator/rates.csv")
+save(rates, file = "~/GitHub/Incubator-Proposal/rates.csv")
 rm(files)
-setwd("~/GitHub/DataIncubator")
-load("~/GitHub/DataIncubator/rates.csv")
+setwd("~/GitHub/Incubator-Proposal")
+load("~/GitHub/Incubator-Proposal/rates.csv")
 
 library(tidyr)
 rates <- rates %>% separate(name, c("iou | noniou","201*"), "zipcodes")
@@ -51,8 +51,8 @@ years <- c(1999, 2001, 2002,(seq(2004,2010)))
 temp <- tempfile()
 download.file("https://www.irs.gov/pub/irs-soi/1998zipcode.zip",temp, mode="wb")
 unzipped <- unzip(temp, exdir=getwd())
-filenames <- list.files(path = "C:/Users/Sarah/Documents/GitHub/DataIncubator/1998ZIPCode", pattern = "xls")
-soi <- read.xlsx("~/GitHub/DataIncubator/1998ZIPCode/98zp01al.xlsx", 1, colIndex = c(1,2,5), startRow = 8, endRow = 4825)
+filenames <- list.files(path = "C:/Users/Sarah/Documents/GitHub/Incubator-Proposal/1998ZIPCode", pattern = "xls")
+soi <- read.xlsx("~/GitHub/Incubator-Proposal/1998ZIPCode/98zp01al.xlsx", 1, colIndex = c(1,2,5), startRow = 8, endRow = 4825)
 
 
 #import DSIRE data on incentives
@@ -60,8 +60,8 @@ library(XML)
 library(rvest)
 library(dplyr)
 urldsire <- "https://ncsolarcen-prod.s3.amazonaws.com/fullexports/dsire-2017-08.xml"
-download.file(urldsire, "~/GitHub/DataIncubator/dsire-2017-08.xml")
-xmlfile <- xmlParse("~/GitHub/DataIncubator/dsire-2017-08.xml")
+download.file(urldsire, "~/GitHub/Incubator-Proposal/dsire-2017-08.xml")
+xmlfile <- xmlParse("~/GitHub/Incubator-Proposal/dsire-2017-08.xml")
 class(xmlfile) 
 xmltop = xmlRoot(xmlfile)
 class(xmltop)
